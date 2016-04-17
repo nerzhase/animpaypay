@@ -11,9 +11,10 @@ public class ThirdPersonController : MonoBehaviour {
 	float rotationspeed = 3f;
 	float gravity = 9.81f;
 
+	[SerializeField]
+	Mesh newmesh;
 
 	void Start () {
-
 	}
 
 	void Update () {
@@ -34,4 +35,7 @@ public class ThirdPersonController : MonoBehaviour {
 	
 		}
 
+	void OnMouseDown () {
+		GetComponent<MeshFilter>().mesh = newmesh;
+	}
 }
