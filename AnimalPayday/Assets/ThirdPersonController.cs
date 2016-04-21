@@ -10,9 +10,9 @@ public class ThirdPersonController : MonoBehaviour {
 	[SerializeField]
 	float rotationspeed = 3f;
 	float gravity = 9.81f;
-	Vector3 velocity;
-	[SerializeField]
-	float velocitystrength = 0f;
+	//Vector3 velocity;
+	//[SerializeField]
+	//float velocitystrength = 0f;
 
 	[SerializeField]
 	Mesh newmesh;
@@ -26,10 +26,10 @@ public class ThirdPersonController : MonoBehaviour {
 		CharacterController controller = GetComponent<CharacterController> ();
 
 		if (controller.isGrounded) {
-			velocity = new Vector3 (0, 0, controller.velocity.z * velocitystrength);
-			velocity = transform.TransformDirection (velocity);
+			//velocity = new Vector3 (0, 0, controller.velocity.z * velocitystrength);
+			//velocity = transform.TransformDirection (velocity);
 
-			moveDirection = new Vector3 (0, -1, Input.GetAxis ("Vertical")) - velocity;
+			moveDirection = new Vector3 (0, -1, Input.GetAxis ("Vertical"));
 			moveDirection = transform.TransformDirection (moveDirection);
 			moveDirection *= speed;
 
@@ -39,7 +39,7 @@ public class ThirdPersonController : MonoBehaviour {
 
 		moveDirection.y -= gravity * Time.deltaTime;
 		controller.Move (moveDirection * Time.deltaTime);
-		Debug.Log(velocity);
+//		Debug.Log(velocity);
 	
 		}
 
