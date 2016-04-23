@@ -8,28 +8,19 @@ public class ThirdPersonController : MonoBehaviour {
 
 	float gravity = 9.81f;
 	CharacterController controller;
-
-
-	Vector3 velocity;
 	[SerializeField]
 	float speed = 5f;
-
 	[SerializeField]
 	float rotationspeed = 3f;
 
 
-
 	void Start () {
 		controller = GetComponent<CharacterController> ();
-		velocity = transform.InverseTransformDirection (controller.velocity);
 	}
 
 	void Update () {
-
-	
+		
 		if (controller.isGrounded) {
-
-
 			moveDirection = new Vector3 (0, -1, Input.GetAxis ("Vertical"));
 			moveDirection = transform.TransformDirection (moveDirection);
 			moveDirection *= speed;
@@ -40,7 +31,6 @@ public class ThirdPersonController : MonoBehaviour {
 
 		moveDirection.y -= gravity * Time.deltaTime;
 		controller.Move (moveDirection * Time.deltaTime);
-	
 		}
 
 }
