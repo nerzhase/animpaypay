@@ -5,24 +5,30 @@ public class ThirdPersonController : MonoBehaviour {
 
 	private Vector3 moveDirection = Vector3.zero;
 
-	[SerializeField]
-	float speed = 5;
-	[SerializeField]
-	float rotationspeed = 3f;
+
 	float gravity = 9.81f;
+	CharacterController controller;
+
+
+	Vector3 velocity;
+	[SerializeField]
+	float speed = 5f;
 
 	[SerializeField]
-	Mesh newmesh;
+	float rotationspeed = 3f;
+
 
 
 	void Start () {
+		controller = GetComponent<CharacterController> ();
+		velocity = transform.InverseTransformDirection (controller.velocity);
 	}
 
 	void Update () {
 
-		CharacterController controller = GetComponent<CharacterController> ();
-
+	
 		if (controller.isGrounded) {
+
 
 			moveDirection = new Vector3 (0, -1, Input.GetAxis ("Vertical"));
 			moveDirection = transform.TransformDirection (moveDirection);
@@ -37,7 +43,4 @@ public class ThirdPersonController : MonoBehaviour {
 	
 		}
 
-	void OnMouseDown () {
-		GetComponent<MeshFilter>().mesh = newmesh;
-	}
 }
