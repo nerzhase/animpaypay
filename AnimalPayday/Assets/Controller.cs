@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ThirdPersonController : MonoBehaviour {
+public class Controller : MonoBehaviour {
 
 	private Vector3 moveDirection = Vector3.zero;
 	float gravity = 9.81f;
@@ -10,7 +10,8 @@ public class ThirdPersonController : MonoBehaviour {
 	float speed = 5f;
 	[SerializeField]
 	float rotationspeed = 3f;
-
+	[SerializeField]
+	float momentum = 1f;
 
 	void Start () {
 		controller = GetComponent<CharacterController> ();
@@ -25,8 +26,13 @@ public class ThirdPersonController : MonoBehaviour {
 
 			transform.Rotate (0, Input.GetAxis ("Horizontal") * rotationspeed, 0);
 
+		}
+
+		if (Input.GetAxis ("Vertical") > 0 && Input.GetAxis ("Vertical") < 0.5) {
+			Debug.Log ("check");
+			moveDirection *= momentum;
+
 		}	
-			
 		moveDirection.y -= gravity * Time.deltaTime;
 		controller.Move (moveDirection * Time.deltaTime);
 
